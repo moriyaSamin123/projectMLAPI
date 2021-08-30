@@ -1,0 +1,53 @@
+﻿{
+  "TrainingConfigurationVersion": 0,
+  "TrainingTime": 10,
+  "Scenario": {
+    "ScenarioType": "Classification"
+  },
+  "DataSource": {
+    "DataSourceType": "TabularFile",
+    "FilePath": "C:\\Users\\aaa\\Pictures\\AnyConv.com__modelToD (1).csv",
+    "Delimiter": ",",
+    "DecimalMarker": ".",
+    "HasHeader": true,
+    "ColumnProperties": [
+      {
+        "ColumnName": "הסעיפים 4",
+        "ColumnPurpose": "Feature",
+        "ColumnDataFormat": "String",
+        "IsCategorical": false
+      },
+      {
+        "ColumnName": "#סעיף_4",
+        "ColumnPurpose": "Feature",
+        "ColumnDataFormat": "String",
+        "IsCategorical": false
+      },
+      {
+        "ColumnName": "1",
+        "ColumnPurpose": "Label",
+        "ColumnDataFormat": "Single",
+        "IsCategorical": true
+      }
+    ]
+  },
+  "Environment": {
+    "EnvironmentType": "LocalCPU"
+  },
+  "RunHistory": {
+    "Trials": [
+      {
+        "TrainerName": "SdcaMaximumEntropyMulti",
+        "Score": 0.921146243776277,
+        "RuntimeInSeconds": 1.4420000314712524
+      },
+      {
+        "TrainerName": "SdcaMaximumEntropyMulti",
+        "Score": 0.921146243776277,
+        "RuntimeInSeconds": 1.3589999675750732
+      }
+    ],
+    "Pipeline": "[{\"EstimatorType\":\"FeaturizeText\",\"Inputs\":[\"הסעיפים 4\"],\"Outputs\":[\"הסעיפים 4\"]},{\"EstimatorType\":\"FeaturizeText\",\"Inputs\":[\"#סעיף_4\"],\"Outputs\":[\"#סעיף_4\"]},{\"EstimatorType\":\"Concatenate\",\"Inputs\":[\"הסעיפים 4\",\"#סעיף_4\"],\"Outputs\":[\"Features\"]},{\"EstimatorType\":\"MapValueToKey\",\"Inputs\":[\"1\"],\"Outputs\":[\"1\"]},{\"EstimatorType\":\"NormalizeMinMax\",\"Inputs\":[\"Features\"],\"Outputs\":[\"Features\"]},{\"LabelColumnName\":\"1\",\"FeatureColumnName\":\"Features\",\"L1Regularization\":\"1.6393238147487\",\"L2Regularization\":\"2.02033119343711\",\"EstimatorType\":\"SdcaMaximumEntropyMulti\",\"Inputs\":[\"1\"],\"Outputs\":[\"Features\"]},{\"EstimatorType\":\"MapKeyToValue\",\"Inputs\":[\"PredictedLabel\"],\"Outputs\":[\"PredictedLabel\"]}]",
+    "MetricName": "MicroAccuracy"
+  }
+}
